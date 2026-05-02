@@ -1,0 +1,66 @@
+/* ── FONTS ───────────────────────────────────────────────────────────────────*/
+body { font-family: 'Barlow', sans-serif; }
+
+/* ── TOPBAR ──────────────────────────────────────────────────────────────────*/
+.topbar { background: #0c2340; padding: 6px 0; font-size: 13px; }
+.topbar .inner { max-width: 1200px; margin: 0 auto; padding: 0 20px;
+    display: flex; gap: 20px; justify-content: flex-end; }
+.topbar a { color: #aec6e8; text-decoration: none; }
+.topbar a:hover { color: #fff; }
+
+/* ── NAVBAR ──────────────────────────────────────────────────────────────────*/
+.navbar-solar { box-shadow: 0 2px 12px rgba(0,0,0,.08); border-bottom: 2px solid #f0f4f8; }
+.brand-icon { font-size: 1.6rem; margin-right: 8px; }
+.brand-sub { display: block; font-size: 9px; letter-spacing: 2px; color: #888; line-height: 1; }
+.nav-link { font-weight: 500; color: #334155 !important; }
+.nav-link:hover, .nav-link.active { color: #f59e0b !important; }
+.btn-nav-outline { border: 1.5px solid #1e3a5f; border-radius: 8px; padding: 4px 14px !important; }
+.btn-nav-outline:hover { background: #1e3a5f; color: white !important; }
+.btn-nav-solid { background: #f59e0b; color: white !important; border-radius: 8px; padding: 4px 14px !important; }
+.btn-nav-solid:hover { background: #d97706; }
+.nav-admin { color: #f59e0b !important; }
+.user-greeting { color: #1e3a5f; font-weight: 600; }
+
+/* ── HERO ────────────────────────────────────────────────────────────────────*/
+.hero-section { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: white; padding: 60px 0; }
+.hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1.1; }
+.hero-sub { font-size: 1.1rem; color: rgba(255,255,255,.75); margin: 20px 0 30px; max-width: 460px; }
+
+/* ── BUTTONS ─────────────────────────────────────────────────────────────────*/
+.btn-solar-primary { background: #f59e0b; color: white; border: none; font-weight: 600; border-radius: 10px; padding: 10px 24px; }
+.btn-solar-primary:hover { background: #d97706; color: white; }
+.btn-solar-sm { background: #f59e0b; color: white; border: none; font-weight: 600; border-radius: 8px; padding: 6px 14px; font-size: 13px; }
+.btn-solar-sm:hover { background: #d97706; color: white; }
+
+/* ── SECTION TITLE ───────────────────────────────────────────────────────────*/
+.section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; color: #0f172a; }
+
+/* ── PRODUCT CARD ────────────────────────────────────────────────────────────*/
+.product-card { border-radius: 14px !important; transition: transform .2s, box-shadow .2s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.12) !important; }
+.product-price { font-size: 1.3rem; font-weight: 800; color: #f59e0b; }
+.bg-solar { background: #0f172a !important; }
+
+/* ── CATEGORY CARD ───────────────────────────────────────────────────────────*/
+.cat-card { transition: transform .2s, box-shadow .2s; }
+.cat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+
+/* ── AUTH ────────────────────────────────────────────────────────────────────*/
+.auth-wrap { min-height: 80vh; display: flex; align-items: center; justify-content: center; background: #f1f5f9; padding: 40px 16px; }
+.auth-card { background: white; border-radius: 20px; padding: 40px; width: 100%; max-width: 440px; box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+.auth-logo { font-size: 3rem; text-align: center; margin-bottom: 8px; }
+.auth-title { text-align: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; color: #0f172a; }
+.auth-sub { text-align: center; color: #64748b; margin-bottom: 28px; }
+.auth-footer { text-align: center; margin-top: 20px; color: #64748b; font-size: 14px; }
+.auth-footer a { color: #f59e0b; text-decoration: none; font-weight: 600; }
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────────*/
+.site-footer { background: #0c2340; color: #8faec8; padding: 48px 0 0; margin-top: 60px; }
+.footer-col h5 { color: white; font-weight: 700; margin-bottom: 14px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+.footer-col a { display: block; color: #8faec8; text-decoration: none; margin-bottom: 6px; font-size: 14px; }
+.footer-col a:hover { color: #f59e0b; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 16px 0; display: flex; justify-content: space-between; font-size: 13px; flex-wrap: wrap; gap: 8px; }
+
+/* ── UTILITIES ───────────────────────────────────────────────────────────────*/
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }

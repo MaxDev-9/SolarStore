@@ -1,0 +1,49 @@
+@model List<SolarStore.Models.Product>
+@{ ViewBag.Title = "Manage Products"; Layout = "_AdminLayout"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Products (@Model.Count)</h4>
+    <a href="/Admin/CreateProduct" class="btn btn-solar-primary">
+        <i class="bi bi-plus-lg me-1"></i>Add Product
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Active</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                @if (p.ImageUrl != null)
+                                {
+                                    <img src="@p.ImageUrl" style="width:40px;height:40px;object-fit:cover;border-radius:6px;" />
+                                }
+                                <strong>@p.Name</strong>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-solar">@p.Category</span></td>
+                        <td>$@p.Price.ToString("N2")</td>
+                        <td>@p.Stock</td>
+                        <td>
+                            @if (p.IsActive) { <span class="badge bg-success">Active</span> }
+                            else { <span class="badge bg-secondary">Hidden</span> }
+                        </td>
+                        <td>
+                            <a href="/Admin/EditProduct/@p.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+                            <form method="post" action="/Admin/DeleteProduct/@p.Id" class="d-inline"
+                                  onsubmit="return confirm('Delete @p.Name?')">
+                                <button class="btn btn-sm btn-outline-danger ms-1">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

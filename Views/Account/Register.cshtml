@@ -1,0 +1,44 @@
+@model SolarStore.Models.RegisterVm
+@{ ViewBag.Title = "Create Account"; }
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-logo">☀️</div>
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-sub">Join thousands of solar energy enthusiasts</p>
+
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label">Full Name</label>
+                <input asp-for="FullName" class="form-control form-control-lg" placeholder="Your full name" />
+                <span asp-validation-for="FullName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email Address</label>
+                <input asp-for="Email" class="form-control form-control-lg" placeholder="you@example.com" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" class="form-control form-control-lg" placeholder="Min. 6 characters" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" class="form-control form-control-lg" placeholder="Repeat password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-solar-primary w-100 btn-lg">Create Account</button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account? <a href="/Account/Login">Sign in</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+@model List<SolarStore.Models.Product>
+@{ ViewBag.Title = "Home"; }
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <h1 class="hero-title">Power Your World<br/><span style="color:#f59e0b;">with Solar Energy</span></h1>
+                <p class="hero-sub">Premium solar panels, inverters, and batteries delivered to your door. Clean energy made easy.</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="/Product" class="btn btn-solar-primary btn-lg">Shop Products</a>
+                    <a href="/Home/Plan" class="btn btn-outline-light btn-lg">Plan My System</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                <div style="font-size:9rem;">☀️</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Shop by Category</h2>
+        <div class="row g-3">
+            @foreach (var cat in new[] { ("Panel","🔆","Solar Panels"), ("Inverter","⚡","Inverters"), ("Battery","🔋","Batteries"), ("Accessory","🔧","Accessories") })
+            {
+                <div class="col-6 col-md-3">
+                    <a href="/Product?category=@cat.Item1" class="cat-card text-center text-decoration-none d-block p-4 bg-white rounded-3 shadow-sm h-100">
+                        <div style="font-size:2.5rem;">@cat.Item2</div>
+                        <div class="fw-600 mt-2 text-dark">@cat.Item3</div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Featured Products</h2>
+        <div class="row g-4">
+            @foreach (var p in Model)
+            {
+                <div class="col-sm-6 col-lg-4">
+                    <div class="product-card card h-100 shadow-sm border-0">
+                        @if (p.ImageUrl != null)
+                        {
+                            <img src="@p.ImageUrl" class="card-img-top" style="height:180px;object-fit:cover;" alt="@p.Name" />
+                        }
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-solar mb-2 align-self-start">@p.Category</span>
+                            <h5 class="card-title">@p.Name</h5>
+                            <p class="card-text text-muted small flex-grow-1">@p.Description.Substring(0, Math.Min(80, p.Description.Length))…</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="product-price">$@p.Price.ToString("N2")</span>
+                                <a href="/Product/Details/@p.Id" class="btn btn-solar-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="/Product" class="btn btn-solar-primary">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Why Choose Solar Store?</h2>
+        <div class="row g-4 text-center">
+            @foreach (var f in new[] {
+                ("🚀","Fast Delivery","Ship anywhere within 3-5 business days"),
+                ("✅","Quality Guaranteed","All products tested and certified"),
+                ("📞","Expert Support","Free consultation from our solar experts"),
+                ("♻️","Eco Friendly","Reduce your carbon footprint today")
+            })
+            {
+                <div class="col-6 col-md-3">
+                    <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                        <div style="font-size:2rem;">@f.Item1</div>
+                        <div class="fw-700 mt-2">@f.Item2</div>
+                        <div class="text-muted small mt-1">@f.Item3</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

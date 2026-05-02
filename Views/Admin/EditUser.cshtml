@@ -1,0 +1,35 @@
+@model SolarStore.Models.User
+@{ ViewBag.Title = "Edit User"; Layout = "_AdminLayout"; }
+
+<div style="max-width:500px;">
+    <h4 class="mb-4">Edit User</h4>
+
+    <form method="post" action="/Admin/EditUser/@Model.Id">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <div class="card border-0 shadow-sm p-4">
+            <div class="mb-3">
+                <label class="form-label fw-600">Full Name</label>
+                <input name="FullName" value="@Model.FullName" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-600">Email</label>
+                <input name="Email" value="@Model.Email" type="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-600">Role</label>
+                <select name="Role" class="form-select">
+                    <option value="Customer" selected="@(Model.Role=="Customer" ? "selected" : null)">Customer</option>
+                    <option value="Admin" selected="@(Model.Role=="Admin" ? "selected" : null)">Admin</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-600">New Password <small class="text-muted">(leave blank to keep current)</small></label>
+                <input name="newPassword" type="password" class="form-control" />
+            </div>
+            <div class="d-flex gap-3">
+                <button class="btn btn-solar-primary">Save Changes</button>
+                <a href="/Admin/Users" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+@model SolarStore.Models.LoginVm
+@{ ViewBag.Title = "Sign In"; }
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-logo">☀️</div>
+        <h2 class="auth-title">Welcome Back</h2>
+        <p class="auth-sub">Sign in to your Solar Store account</p>
+
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email Address</label>
+                <input asp-for="Email" class="form-control form-control-lg" placeholder="you@example.com" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" class="form-control form-control-lg" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-solar-primary w-100 btn-lg">Sign In</button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="/Account/Register">Create one free</a>
+        </div>
+
+        <div class="auth-footer" style="margin-top:8px;font-size:12px;color:#999;">
+            Demo admin: admin@solarstore.com / Admin@123
+        </div>
+    </div>
+</div>

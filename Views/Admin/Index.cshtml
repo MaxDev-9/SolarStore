@@ -1,0 +1,51 @@
+@{ ViewBag.Title = "Admin Dashboard"; Layout = "_AdminLayout"; }
+
+<h2 class="mb-4">📊 Dashboard</h2>
+
+<div class="row g-4 mb-5">
+    @foreach (var stat in new (string Label, string Value, string Icon, string Color)[] {
+        ("Products", ViewBag.TotalProducts.ToString(), "bi-box-seam", "#f59e0b"),
+        ("Customers", ViewBag.TotalUsers.ToString(), "bi-people", "#3b82f6"),
+        ("Orders", ViewBag.TotalOrders.ToString(), "bi-bag-check", "#8b5cf6"),
+        ("Revenue", "$" + ((decimal)ViewBag.Revenue).ToString("N0"), "bi-currency-dollar", "#10b981"),
+    })
+    {
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                    <div style="width:52px;height:52px;border-radius:14px;background:@(stat.Color)33;display:flex;align-items:center;justify-content:center;">
+                        <i class="bi @stat.Icon" style="font-size:1.5rem;color:@stat.Color;"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small">@stat.Label</div>
+                        <div style="font-size:1.6rem;font-weight:800;color:@stat.Color;">@stat.Value</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<h5 class="mb-3">Recent Orders</h5>
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+            <thead class="table-dark">
+                <tr><th>#</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody>
+                @foreach (var o in (dynamic)ViewBag.RecentOrders)
+                {
+                    <tr>
+                        <td>#@o.Id</td>
+                        <td>@o.User?.FullName</td>
+                        <td>@o.OrderDate.ToString("MMM dd")</td>
+                        <td>$@o.TotalAmount.ToString("N2")</td>
+                        <td><span class="badge bg-warning text-dark">@o.Status</span></td>
+                        <td><a href="/Admin/Orders" class="btn btn-sm btn-outline-secondary">View All</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

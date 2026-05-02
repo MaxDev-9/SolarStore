@@ -1,0 +1,63 @@
+@model SolarStore.Models.Product
+@{ ViewBag.Title = Model.Name; }
+
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/Product">Products</a></li>
+            <li class="breadcrumb-item active">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <div class="col-md-5">
+            @if (Model.ImageUrl != null)
+            {
+                <img src="@Model.ImageUrl" class="img-fluid rounded-3 shadow" alt="@Model.Name" />
+            }
+            else
+            {
+                <div class="bg-light rounded-3 d-flex align-items-center justify-content-center" style="height:320px;font-size:6rem;">☀️</div>
+            }
+        </div>
+
+        <div class="col-md-7">
+            <span class="badge bg-solar mb-3">@Model.Category</span>
+            <h1 class="mb-3">@Model.Name</h1>
+            <p class="text-muted">@Model.Description</p>
+
+            <div class="product-price mb-2" style="font-size:2rem;">$@Model.Price.ToString("N2")</div>
+
+            @if (Model.Stock > 0)
+            {
+                <p class="text-success mb-4"><i class="bi bi-check-circle-fill me-1"></i>In Stock (@Model.Stock available)</p>
+
+                @if (Context.Session.GetInt32("UserId") != null)
+                {
+                    <form method="get" action="/Customer/PlaceOrder/@Model.Id" class="d-flex gap-3 align-items-center">
+                        <div>
+                            <label class="form-label fw-600">Quantity</label>
+                            <input type="number" name="qty" value="1" min="1" max="@Model.Stock" class="form-control" style="width:90px;" />
+                        </div>
+                        <div class="align-self-end">
+                            <button class="btn btn-solar-primary btn-lg">
+                                <i class="bi bi-cart-plus me-1"></i>Order Now
+                            </button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <a href="/Account/Login" class="btn btn-solar-primary btn-lg">
+                        <i class="bi bi-lock me-1"></i>Sign in to Order
+                    </a>
+                }
+            }
+            else
+            {
+                <span class="badge bg-danger fs-6">Out of Stock</span>
+            }
+        </div>
+    </div>
+</div>

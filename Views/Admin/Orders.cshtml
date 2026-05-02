@@ -1,0 +1,54 @@
+@model List<SolarStore.Models.Order>
+@{ ViewBag.Title = "Manage Orders"; Layout = "_AdminLayout"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">Orders (@Model.Count)</h4>
+    <div class="d-flex gap-2 flex-wrap">
+        @foreach (var s in new[]{"","Pending","Processing","Shipped","Delivered","Cancelled"})
+        {
+            <a href="@(s==""?"/Admin/Orders":$"/Admin/Orders?status={s}")"
+               class="btn btn-sm @(ViewBag.StatusFilter==s||(s==""&&ViewBag.StatusFilter==null)?"btn-solar-primary":"btn-outline-secondary")">
+               @(s == "" ? "All" : s)
+            </a>
+        }
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr><th>#</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th>Update Status</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model)
+                {
+                    <tr>
+                        <td>#@o.Id</td>
+                        <td>@o.User?.FullName</td>
+                        <td>@o.OrderDate.ToString("MMM dd, yyyy")</td>
+                        <td>@o.OrderItems.Sum(i => i.Quantity)</td>
+                        <td>$@o.TotalAmount.ToString("N2")</td>
+                        <td>
+                            <span class="badge @(o.Status switch {
+                                "Delivered" => "bg-success", "Cancelled" => "bg-danger",
+                                "Shipped" => "bg-primary", "Processing" => "bg-info text-dark",
+                                _ => "bg-warning text-dark" })">@o.Status</span>
+                        </td>
+                        <td>
+                            <form method="post" action="/Admin/UpdateOrderStatus/@o.Id" class="d-flex gap-1">
+                                <select name="status" class="form-select form-select-sm" style="width:130px;">
+                                    @foreach (var s in new[]{"Pending","Processing","Shipped","Delivered","Cancelled"})
+                                    {
+                                        <option value="@s" selected="@(o.Status==s ? "selected" : null)">@s</option>
+                                    }
+                                </select>
+                                <button class="btn btn-sm btn-solar-primary">✓</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
