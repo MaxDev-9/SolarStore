@@ -35,7 +35,8 @@
 
                 @if (Context.Session.GetInt32("UserId") != null)
                 {
-                    <form method="get" action="/Customer/PlaceOrder/@Model.Id" class="d-flex gap-3 align-items-center">
+                    <form method="get" action="/Customer/PlaceOrder" class="d-flex gap-3 align-items-center">
+                        <input type="hidden" name="productId" value="@Model.Id" />
                         <div>
                             <label class="form-label fw-600">Quantity</label>
                             <input type="number" name="qty" value="1" min="1" max="@Model.Stock" class="form-control" style="width:90px;" />
